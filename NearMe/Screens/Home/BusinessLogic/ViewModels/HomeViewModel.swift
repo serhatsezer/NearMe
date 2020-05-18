@@ -14,8 +14,8 @@ protocol HomeViewModelInput {
 }
 
 protocol HomeviewModelOutput {
-    var places: PublishSubject<[RestaurantCellViewModel]> { get }
-    var error: PublishSubject<Error> { get }
+    var places: Observable<[RestaurantCellViewModel]> { get }
+    var error: Observable<Error> { get }
 }
 
 protocol HomeViewModelProtocol {
@@ -76,11 +76,11 @@ extension HomeViewModel: HomeViewModelInput {
 
 // MARK: HomeViewModel Outputs
 extension HomeViewModel: HomeviewModelOutput {
-    var places: PublishSubject<[RestaurantCellViewModel]> {
-        return placesSubject
+    var places: Observable<[RestaurantCellViewModel]> {
+        return placesSubject.asObservable()
     }
     
-    var error: PublishSubject<Error> {
-        return placesErrorSubject
+    var error: Observable<Error> {
+        return placesErrorSubject.asObservable()
     }
 }
